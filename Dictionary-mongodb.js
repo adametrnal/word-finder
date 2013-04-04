@@ -28,7 +28,7 @@ console.log(mongoEnv);
 
 // Main DB provider object
 DictionaryProvider = function() {
-    this.db = new Db('dictionary-db', new Server(mongoHost, mongoPort, { auto_reconnect: true }, {}));
+    this.db = new Db(dbName, new Server(mongoHost, mongoPort, { auto_reconnect: true }, {}));
     this.db.open(function(error, db){
         if(mongoEnv !== 'localhost') {
         	db.authenticate('heroku_app14477971', '6d42irhc81cd0ep4jb3d3t4hef', function(error, result) {});
