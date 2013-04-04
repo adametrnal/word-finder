@@ -1,18 +1,20 @@
 WordFinder = (function () {
 
     //Private Vars
-    var wordListURL = "resources/englishWords.txt";
+    var wordListURL = "./resources/en-us.txt";
     var compareString = "alsup";
-    var dictionaryMap = {};
     var outputArray = [];
-
+    var _lang = "en-us";
+    
     var outputNode = jQuery('#output');
 
     //Private Methods
     var init = function() {
 	  	jQuery.when(getData(wordListURL))
-	  	  	  .then(processDict)
-	  		  .then(makeoutput);
+//	  	  	  .then(processDict);
+//	  	  	  .then(getDict(_lang));
+			  .then(findWords(_lang, compareString));
+	  		  
     };
 
 	var getData = function(url) {
@@ -23,12 +25,10 @@ WordFinder = (function () {
 	};
 
 	//Processing Dictionary will take 
-	var processDict = function(dictText){
-		outputNode.text("Processing...");
-		var startTime = new Date().getTime();
+	var processDict = function(dictText) {
+		var dictionaryMap = {};
 
 		var dictionaryArr = dictText.split('\n');
-		console.log("dictionaryCount:" + dictionaryArr.length);
 		for (var i = dictionaryArr.length - 2; i >= 0; i--) {
 			var currWord = dictionaryArr[i];
 			var wordArr = currWord.toLowerCase().split('').sort();
@@ -38,59 +38,37 @@ WordFinder = (function () {
 				dictionaryMap[sortedWord].words.push(currWord);
 			}
 			else {	
-				dictionaryMap[sortedWord] = {letterCounts: countLetters(currWord), words : [currWord]};
+				dictionaryMap[sortedWord] = { words : [currWord] };
 			}
 		}
-		var endTime = new Date().getTime();
-		console.log("Time to Process Dictionary: " + (endTime - startTime));
-		outputNode.text("Done Processing!");
+
+		jQuery.post("/api/1.0/add_dictionary", { "lang" : _lang, dict : dictionaryMap })
+		.done(function(data) {
+			console.log("Data Loaded");
+		});
+
 	};
 
-	var countLetters = function(str) {
-		var letterCounts = [];
-		for (var i = str.length - 1; i >= 0; i--) {
-			var currLetter = str[i];
-			letterCounts[currLetter] = letterCounts[currLetter] !== undefined ? letterCounts[currLetter] +  1 : 1;
-		}
-
-		return letterCounts;
-	};
-
-	var makeoutput = function(){
-		var startTime2 = new Date().getTime();
-		outputNode.text("makeoutput");
-		var compareLettersArr = countLetters(compareString);
-		
-		var mapCount = 0;
-		for(var sortedWord in dictionaryMap){
-			if(containsStringLetters(compareLettersArr, dictionaryMap[sortedWord].letterCounts)){
-				 var unscrambledWordArray = dictionaryMap[sortedWord].words;
-				 for (var i = unscrambledWordArray.length - 1; i >= 0; i--) {
-				 	outputArray.push(unscrambledWordArray[i]);
-				 };
+	var findWords = function(lang, compareString) {
+		console.log("finding words in string: " + compareString + ", with " + lang);
+		jQuery.get("/api/1.0/find_words", { "lang" : _lang, "letterString" : compareString})
+		.done(function(data) {
+			if(data !== undefined) {
+				console.log("Words retrieved!");
+				var count = 0;
+				var outputString = "";
+				for(var word in data){
+					outputString += ", " + data[word];
+					count++;	
+				}
+				outputNode.text(outputString);
 			}
-			mapCount++;
-		}
-		console.log("mapCount:" + mapCount);
-		console.log("Time to Find Outputs " + (new Date().getTime() - startTime2));
-		var count = 0;
-		var outputString = "";
-		for(var i = 0; i < outputArray.length; i++){
-			outputString += ", " + outputArray[i];
-			count++;	
-		}
-		outputNode.text(outputString);
-	};
-
-	var containsStringLetters = function(compareArray, wordLetterCountArr){
-
-		for( var letter in wordLetterCountArr) {
-			if(compareArray[letter] === undefined || ( compareArray[letter] < wordLetterCountArr[letter])) {
-				return false;
+			else {
+				console.log("error finding words");
 			}
-		}
-		return true;
-	};
+		})
+	}
+	
 
 	//Return Pubic API
 	return {
