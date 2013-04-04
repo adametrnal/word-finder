@@ -21,7 +21,7 @@ else {
 }
  
 
-console.log(mongoUri);
+console.log(mongoEnv);
 
 // Main DB provider object
 DictionaryProvider = function() {
