@@ -1,0 +1,6 @@
+#ignore mac files
+.DS_Store
+
+*.backup.*
+/node_modules
+/public/resources
