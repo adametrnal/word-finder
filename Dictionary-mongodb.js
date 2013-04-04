@@ -9,15 +9,18 @@ var mongoEnv = process.env.MONGOLAB_URI ||
   'localhost';
 
 var mongoHost,
-	mongoPort;
+	mongoPort,
+	dbName;
 
 if(mongoEnv !== 'localhost'){
 	mongoHost = 'ds047057.mongolab.com';
 	mongoPort = 47057;
+	dbName = 'heroku_app14477971';
 }
 else {
 	mongoHost = 'localHost';
 	mongoPort = 27017;
+	dbName = 'dictionary-db';
 }
  
 

@@ -10,10 +10,10 @@ WordFinder = (function () {
 
     //Private Methods
     var init = function() {
-	  	jQuery.when(getData(wordListURL))
-//	  	  	  .then(processDict);
-//	  	  	  .then(getDict(_lang));
-			  .then(findWords(_lang, compareString));
+	  	// jQuery.when(getData(wordListURL))
+	  	//   	  .then(processDict);
+
+	  	findWords(_lang, compareString);
 	  		  
     };
 
