@@ -38,7 +38,7 @@ API Docs
 --------
 __GET__
 
-```/api/1.0/find_words
+/api/1.0/find_words
 
 request to search for a string in a given language
 
@@ -75,7 +75,7 @@ __Required parameters are:__
 lang  This will be the name of the collection for the dictionary. 
 dict dictionary HashMap.  
 
-Example entry in the hash is { 'act' : { 'w' : [ 'cat', 'Cat', 'act' ] } }```
+Example entry in the hash is { 'act' : { 'w' : [ 'cat', 'Cat', 'act' ] } }
 
 
 Demo
