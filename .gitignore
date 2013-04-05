@@ -4,5 +4,5 @@
 *.backup.*
 /node_modules
 /public/resources
-dictionaries.json
-/tools
+*.json
+loadDictionary.html

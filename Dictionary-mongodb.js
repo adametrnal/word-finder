@@ -36,10 +36,9 @@ DictionaryProvider = function() {
     });
 };
 
-// This gets us in the to 'locations' collection, which is where
-// the farmstand records live.
-DictionaryProvider.prototype.getDictionaries = function(callback) {
-    this.db.collection('dictionaries', function(error, dictionary_collection) {
+// This gets us in the to collection specified by 'lang'
+DictionaryProvider.prototype.getDictionaries = function(lang, callback) {
+    this.db.collection(lang, function(error, dictionary_collection) {
 		if (error) {
 			callback(error);
 		}
@@ -49,9 +48,9 @@ DictionaryProvider.prototype.getDictionaries = function(callback) {
     });
 };
 
-// Write the suppiled records into the database.
-DictionaryProvider.prototype.add_dictionary = function(dict, callback) {
-    this.getDictionaries(function(error, dictionary_collection) {
+// Create a collection called 'lang' and insert dict into it
+DictionaryProvider.prototype.add_dictionary = function(lang, dict, callback) {
+    this.getDictionaries(lang, function(error, dictionary_collection) {
 		if (error) {
 			callback(error);
 		}
@@ -68,13 +67,14 @@ DictionaryProvider.prototype.add_dictionary = function(dict, callback) {
 	});
 };
 
+// Retrieve a dicttionary collection with name 'lang'
 DictionaryProvider.prototype.get_dictionary = function(lang, callback) {
-    this.getDictionaries(function(error, dictionary_collection) {
+    this.getDictionaries(lang, function(error, dictionary_collection) {
 		if (error) {
 			callback(error);
 		}
 		else {
-			var cursor = dictionary_collection.find({ 'lang': lang }).limit(1);
+			var cursor = dictionary_collection.find().limit(1);
             cursor.toArray(function(error, result) {
 				if (error) {
 					callback(error);

@@ -1,0 +1,133 @@
+/* typography */
+h1 {
+	font-family: 'Julius Sans One', sans-serif;
+}
+
+/* main styles */
+header {
+	background:  url("../img/noisy_net.jpg") repeat;
+	padding: 10px 0;
+	color: white;
+	border-bottom: 1px solid rgba(254, 254, 254, .2);
+}
+
+body {
+	background:  url("../img/grey_wash_wall.png") repeat;
+	margin: 0;
+	font-family: 'Sanchez', serif;
+}
+
+input {
+	padding: 5px;
+	display: block;
+	width: 80%;
+	font-family: 'Sanchez', serif;
+}
+
+footer {
+	background:  url("../img/noisy_net.jpg") repeat;
+	color: white;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 5px 0;
+	border-top: 1px solid rgba(254, 254, 254, .2);
+}
+
+label[for=letterString], label[for=output] {
+	display: block;
+	padding-bottom: 5px;
+}
+
+label[for=output] {
+	float:left;
+}
+
+textarea {
+	padding: 5px 5px;
+	display:block;
+	height:300px;
+	box-sizing:border-box;
+	clear: both;
+	font-family: 'Sanchez', serif;
+}
+
+#resultFilter {
+	display:inline;
+	width: 50%;
+}
+
+progress {
+    width: 100%;
+}
+
+.progressContainer {
+    position: fixed;
+    top: 50%;
+    left: 35%;
+    width: 30%;
+    z-index: 1000;
+}
+
+.progressContainer span {
+    margin: 0 auto;
+    display: block;
+    padding: 10px 0 0 0;
+    text-align: center;
+}
+
+.horizontalContainer {
+	width: 45%;
+	padding: 20px 0;
+}
+
+.horizontalContainer span {
+	position: relative;
+	top: -14px;	
+}
+
+.rangeMin {
+	padding: 0 10px;
+}
+
+.rangeMax {
+	padding: 0 0 0 5px;
+}
+
+.rangeCount {
+	padding: 0 0 0 35px;
+}
+
+.inputLayer {
+	display: block;
+}
+
+.langLayer {
+	padding: 20px 0 0 0;
+	display: block;
+}
+
+.stringLayer {
+	padding: 15px 0;
+	display: block;
+}
+
+.sortLink {
+	float:right;
+}
+
+/* helpers */
+.disabled {
+	opacity: .1;
+	filter:alpha(opacity=1);
+}
+
+.wrapper {
+	width: 960px;
+	margin: 0 auto;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}

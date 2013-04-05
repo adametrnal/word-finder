@@ -7,12 +7,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-        <title>Adam Brill's Portfolio</title>
-        <meta name="description" content="A Portfolio showing some of the coding related work of Adam Brill">
+        <title>Word Finder</title>
+        <meta name="description" content="Quickly find all words that can be constructed from a particular set of letters.">
         <meta name="viewport" content="width=device-width">
 
         <link rel="shortcut icon" href="./favicon.ico" />
-        <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400|Roboto:400,700,400italic'
+        <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One|Sanchez'
                     rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/main.css">
     </head>
@@ -20,14 +20,63 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
+        <header>
+            <h1 class="wrapper">Word Finder</h1>  
+        </header>
 
-        <div id="output">
-            Test
+        <div class="langLayer wrapper">
+            <label id="langLabel" for="language_select">1. Choose a language to get started: </label>
+            <select id="language_select" name="language_select">
+              <option value="en_us">English</option> 
+              <option value="es">Spanish</option>
+              <option value="it">Italian</option>
+              <option value="fr">French</option>
+            </select>
         </div>
+        <div class="progressContainer">
+            <progress>Loading</progress>
+            <span id="loadingMessage">Loading English Dictionary...</span>
+        </div>
+        <div class="mainContainer disabled">
+            <div class="inputLayer" class="wrapper">
+                <form class="wrapper">
+                    
+                    <div class="stringLayer">
+                        <label id="stringLabel" for="letterString">2. Now enter a string </label>
+                        <input type="text" id="letterString" name="letterString" placeholder="pizza" disabled="true">
+                    </div>
+                    <div class="filterLayer disabled" title="Enter a string to filter the results.">
+                        <label id="filterLabel" for="resultFilter">3. Filter Results by word length</label>
+                        <div class="horizontalContainer">
+                            <span class="rangeMin">1</span>
+                            <input id="resultFilter" type="range" min="1" max="100" value="100" step="1" >
+                            <span class="rangeMax">MAX</span>
+                            <span class="rangeCount">No Limit</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="outputLayer wrapper">
+                <label class="outputLabel" for="output">Results:</label>
+                <a class="sortLink disabled" href="#">Sort from Z to A</a>
+                <textarea id="output" class="outputLayer wrapper" readonly="true">a, A, ai, i, I, p, P, pa, pi, pia, Pia, pizza, z, Z, za, zip, Zipa
+                </textarea>
+            </div>
+        </div>
+        <footer>
+            <p class="wrapper">Don't forget to check out our cool 
+                <a href="https://github.com/adametrnal/word-finder" target="_blank">API</a>
+            </p>
+        </footer>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
+        <!-- libs:  In production environements, these would be minified and catted to the main js file -->
+        <script src="js/libs/html5slider.js"></script>
+
+        <!-- main app -->
         <script src="js/main.js"></script>
 
     </body>
