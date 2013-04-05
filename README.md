@@ -38,7 +38,7 @@ API Docs
 --------
 __GET__
 
-```/api/1.0/find_words```
+```/api/1.0/find_words
 
 request to search for a string in a given language
 
@@ -50,9 +50,9 @@ letterString: the string to seatch for words.
 
 __Example__
 
-```http://boiling-lowlands-4650.herokuapp.com/api/1.0/find_words?lang=en_us&letterString=cat```
+http://boiling-lowlands-4650.herokuapp.com/api/1.0/find_words?lang=en_us&letterString=cat
 
-```/api/1.0/get_dictionary```
+/api/1.0/get_dictionary
 
 Returns the Dictionary JSON object representing a hash map of a pre-processed dictionary
 
@@ -62,11 +62,11 @@ lang: language code to search.  Possible values are 'en_us', 'es', 'fr', 'it'. D
 
 __Example__
 
-```http://boiling-lowlands-4650.herokuapp.com/api/1.0/get_dictionary?lang=es```
+http://boiling-lowlands-4650.herokuapp.com/api/1.0/get_dictionary?lang=es
 
 __POST__
 
-```/api/1.0/add_dictionary```
+/api/1.0/add_dictionary
 
 Add a new dictionary to the DB
 
@@ -75,7 +75,7 @@ __Required parameters are:__
 lang  This will be the name of the collection for the dictionary. 
 dict dictionary HashMap.  
 
-Example entry in the hash is { 'act' : { 'w' : [ 'cat', 'Cat', 'act' ] } }
+Example entry in the hash is { 'act' : { 'w' : [ 'cat', 'Cat', 'act' ] } }```
 
 
 Demo
