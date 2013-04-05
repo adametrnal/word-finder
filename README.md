@@ -38,27 +38,27 @@ API Docs
 --------
 __GET__
 
-```/api/1.0/find_words ```
+```/api/1.0/find_words```
 
 request to search for a string in a given language
 
 __Required parameters are:__ 
 
-```lang: ```language code to search.  Possible values are 'en_us', 'es', 'fr', 'it'. Defaults to 'en_us'.
+lang: language code to search.  Possible values are 'en_us', 'es', 'fr', 'it'. Defaults to 'en_us'.
 
-```letterString: the string to seatch for words. ```
+letterString: the string to seatch for words.
 
 __Example__
 
 ```http://boiling-lowlands-4650.herokuapp.com/api/1.0/find_words?lang=en_us&letterString=cat```
 
-```/api/1.0/get_dictionary ```
+```/api/1.0/get_dictionary```
 
 Returns the Dictionary JSON object representing a hash map of a pre-processed dictionary
 
 __Required parameters are:__ 
 
-```lang: ```language code to search.  Possible values are 'en_us', 'es', 'fr', 'it'. Defaults to 'en_us'.
+lang: language code to search.  Possible values are 'en_us', 'es', 'fr', 'it'. Defaults to 'en_us'.
 
 __Example__
 
@@ -66,16 +66,16 @@ __Example__
 
 __POST__
 
-```/api/1.0/add_dictionary ```
+```/api/1.0/add_dictionary```
 
 Add a new dictionary to the DB
 
 __Required parameters are:__ 
 
-```lang```  This will be the name of the collection for the dictionary. 
-```dict``` dictionary HashMap.  
+lang  This will be the name of the collection for the dictionary. 
+dict dictionary HashMap.  
 
-Example entry in the hash is ```{ 'act' : { 'w' : [ 'cat', 'Cat', 'act' ] } }```
+Example entry in the hash is { 'act' : { 'w' : [ 'cat', 'Cat', 'act' ] } }
 
 
 Demo
