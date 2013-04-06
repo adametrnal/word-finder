@@ -6,3 +6,4 @@
 /public/resources
 *.json
 loadDictionary.html
+/config/config.js
