@@ -50,32 +50,6 @@ LoadDictionary = (function () {
 
 	};
 
-
-	/**
-	* Returns a list of words in a language that can be formed from the letters in a string
-	* Not actually used in this app but included for reference for the API
-	* 
-	* @param langString {string} code representing language to search. For example: "en-us"
-	* @param compareString {string} string containing letters from which to search for words
-	*
-	* @return {array} contains words that were found
-	*/
-	var findWords = function(langString, compareString) {
-		console.log("finding words in string: " + _compareString + ", with " + langString);
-		jQuery.get("/api/1.0/find_words", { "lang" : langString, "letterString" : _compareString})
-		.done(function(data) {
-			if(data !== undefined) {
-				console.log("Words retrieved!");
-				return data;
-			}
-			else {
-				console.log("error finding words");
-				return [];
-			}
-		})
-	}
-
-
 	//Return Pubic API
 	return {
 		init : init

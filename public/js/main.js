@@ -7,6 +7,7 @@ WordFinder = (function () {
 		_dictMap = {},
 		_$textInput,    
     	_$outputNode,
+        _pendingSearch = false;
     	_sortedAtoZ = true; 
 
     //Private Methods
@@ -30,8 +31,15 @@ WordFinder = (function () {
 	  	_$textInput.keyup( function() {
 		  		 delay( function(){
 			  		_compareString = _$textInput.val();
-			  		findWordsInString(_compareString, _dictMap);
-					displayWords(_outputArray);
+
+                    //Use the API if the dictionary is still loading
+                    if(jQuery.isEmptyObject(_dictMap)){
+                        findWordsFromAPI(_lang.val, _compareString);
+                    }
+                    else{
+			  		   findWordsInString(_compareString, _dictMap);
+					   displayWords(_outputArray);
+                    }
 	  			}, 200);
 	  	});
 
@@ -131,7 +139,7 @@ WordFinder = (function () {
 	    _outputArray = [];
 
 	    for(var sortedWord in dict){
-	    	if(containsStringLetters(countLetters(_compareString), dict[sortedWord].letterCounts)){
+	    	if(containsStringLetters(countLetters(str), dict[sortedWord].letterCounts)){
 	           var unscrambledWordArray = dict[sortedWord].w;
 
 	           for (var i = unscrambledWordArray.length - 1; i >= 0; i--) {
@@ -156,11 +164,11 @@ WordFinder = (function () {
 		console.log('Retrieving Dictionary: ' + lang.val);
 		displayProgress('Loading ' + lang.text + ' dictionary...');
 
+        _dictMap = {};
 		jQuery.get('/api/1.0/get_dictionary', {'lang' : lang.val})
 		.done(function(data) {
 			if(data !== undefined) {
 				console.log('Dictionary retrieved!');
-				_$textInput.prop('disabled', false);
 				_dictMap = addWordLetterCounts(data);
 				if(_$textInput.val().length > 0){
 					findWordsInString(_compareString, _dictMap);
@@ -176,6 +184,34 @@ WordFinder = (function () {
 		}
 	)}
 
+    /**
+    * Returns a list of words in a language that can be formed from the letters in a string
+    * This is used before the dictionary is loaded on the local machine
+    * 
+    * @param langString {string} code representing language to search. For example: "en-us"
+    * @param compareString {string} string containing letters from which to search for words
+    *
+    * @return {array} contains words that were found
+    */
+    var findWordsFromAPI = function(langString, compareString) {
+        if(_pendingSearch === false) {
+            _pendingSearch = true;
+            console.log("finding words in string: " + compareString + ", with " + langString);
+            jQuery.get("/api/1.0/find_words", { "lang" : langString, "letterString" : compareString})
+            .done(function(data) {
+                _pendingSearch = true;
+                if(data !== undefined) {
+                    console.log("Words retrieved!");
+                    displayWords(data);
+                }
+                else {
+                    console.log("error finding words");
+                    return [];
+                }
+            })
+        }
+    }
+
 	// UI Helpers
 
 	/**
@@ -188,11 +224,9 @@ WordFinder = (function () {
 		jQuery('.filterLayer').removeClass('disabled').prop('title', '');
 
 		if(maximum > 0) {
-			if($resultFilter.val() > maximum) {
-				$resultFilter.val('maximum');
-			}
 			jQuery('.rangeMax').text(maximum);
 			jQuery('#resultFilter').prop('max', maximum);
+            $resultFilter.val(maximum);
 			jQuery('.rangeCount').text($resultFilter.val() + ' letters');
 		}
 		else {
@@ -269,10 +303,7 @@ WordFinder = (function () {
 	* @param message {string} message to be displayed under the progress bar
 	**/
 	var displayProgress = function(message) {
-		jQuery('#loadingMessage').text(message);
-		jQuery('.progressContainer').removeClass('hidden');
-		jQuery('.mainContainer').addClass('disabled');
-
+        jQuery('.dictStatus').text(message).removeClass('dictLoaded');
 	}
 	
 	/**
@@ -281,8 +312,7 @@ WordFinder = (function () {
 	* @param message {string} message to be displayed under the progress bar
 	**/
 	var doneLoading = function() {
-		jQuery('.progressContainer').addClass('hidden')
-		jQuery('.mainContainer').removeClass('disabled');
+        jQuery('.dictStatus').text('Loaded! Searches should be much faster now.').addClass('dictLoaded');
 	}
 
 	/**
@@ -298,7 +328,13 @@ WordFinder = (function () {
 
 	//Return Pubic API
 	return {
-		init : init
+		init : init,
+
+        //methods exposed for testing ONLY
+        addWordLetterCounts: addWordLetterCounts,
+        countLetters: countLetters,
+        containsStringLetters: containsStringLetters,
+        findWordsInString: findWordsInString,
 	};
 
 }());

@@ -23,7 +23,9 @@
         <header>
             <h1 class="wrapper">Word Finder</h1>  
         </header>
-
+        <div class="wrapper">
+            <p>Welcome to the Word Finder.  Enter some text below to find all of the possible words that can be made from its letters in the selected language.  Then you can filter by the maximum word length by dragging the slider or you can change the sort order by clicking the link.  Have fun!</p>
+        </div>
         <div class="langLayer wrapper">
             <label id="langLabel" for="language_select">1. Choose a language to get started: </label>
             <select id="language_select" name="language_select">
@@ -32,21 +34,18 @@
               <option value="it">Italian</option>
               <option value="fr">French</option>
             </select>
+            <p class="dictStatus">Loading English dictionary...</p>
         </div>
-        <div class="progressContainer">
-            <progress></progress>
-            <span id="loadingMessage">Loading English Dictionary...</span>
-        </div>
-        <div class="mainContainer disabled">
+        <div class="mainContainer">
             <div class="inputLayer" class="wrapper">
                 <form class="wrapper">
                     
                     <div class="stringLayer">
                         <label id="stringLabel" for="letterString">2. Now enter a string </label>
-                        <input type="text" id="letterString" name="letterString" placeholder="pizza" disabled="true">
+                        <input type="text" id="letterString" name="letterString" placeholder="pizza">
                     </div>
                     <div class="filterLayer disabled" title="Enter a string to filter the results.">
-                        <label id="filterLabel" for="resultFilter">3. Filter Results by word length</label>
+                        <label id="filterLabel" for="resultFilter">3. Filter Results by maximum word length</label>
                         <div class="horizontalContainer">
                             <span class="rangeMin">1</span>
                             <input id="resultFilter" type="range" min="1" max="100" value="100" step="1" >

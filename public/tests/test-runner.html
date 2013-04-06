@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>WordFinder Tests</title>
+  <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css">
+</head>
+<body>
+        <div class="langLayer wrapper">
+            <label id="langLabel" for="language_select">1. Choose a language to get started: </label>
+            <select id="language_select" name="language_select">
+              <option value="en_us">English</option> 
+              <option value="es">Spanish</option>
+              <option value="it">Italian</option>
+              <option value="fr">French</option>
+            </select>
+        </div>
+        <div class="progressContainer">
+            <progress></progress>
+            <span id="loadingMessage">Loading English Dictionary...</span>
+        </div>
+        <div class="mainContainer disabled">
+            <div class="inputLayer" class="wrapper">
+                <form class="wrapper">
+                    
+                    <div class="stringLayer">
+                        <label id="stringLabel" for="letterString">2. Now enter a string </label>
+                        <input type="text" id="letterString" name="letterString" placeholder="pizza" disabled="true">
+                    </div>
+                    <div class="filterLayer disabled" title="Enter a string to filter the results.">
+                        <label id="filterLabel" for="resultFilter">3. Filter Results by word length</label>
+                        <div class="horizontalContainer">
+                            <span class="rangeMin">1</span>
+                            <input id="resultFilter" type="range" min="1" max="100" value="100" step="1" >
+                            <span class="rangeMax">MAX</span>
+                            <span class="rangeCount">No Limit</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="outputLayer wrapper">
+                <label class="outputLabel" for="output">Results:</label>
+                <a class="sortLink disabled" href="#">Sort from Z to A</a>
+                <textarea id="output" class="outputLayer wrapper" readonly="true">a, A, ai, i, I, p, P, pa, pi, pia, Pia, pizza, z, Z, za, zip, Zipa
+                </textarea>
+            </div>
+        </div>
+
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="./tests.js"></script>
+</body>
+</html>
