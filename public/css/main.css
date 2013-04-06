@@ -71,37 +71,34 @@ progress {
 .dictStatus {
     display:inline;
     padding-left: 20px;
-    color: #f00;
+    color: #F20A0A;
 }
 
 .dictLoaded {
-    color: #0f0;
+    color: #89c403;
 }
 
-
 #searchButton {
-    -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-    -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-    box-shadow:inset 0px 1px 0px 0px #ffffff;
-    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
-    background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
-    background-color:#ededed;
-    border:1px solid #dcdcdc;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809) );
+    background:-moz-linear-gradient( center top, #89c403 5%, #77a809 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809');
+    background-color:#89c403;
+    border:1px solid #74b807;
     display:inline-block;
-    color:#777777;
-    font-weight:bold;
-    padding:6px 24px;
+    color:#ffffff;
+    font-family: 'Sanchez', serif;
+    font-size:15px;
+    font-weight:normal;
+    padding:4px 24px;
     text-decoration:none;
-    text-shadow:1px 1px 0px #ffffff;
     margin-left: 20px;
 }
 
 #searchButton:hover {
-    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
-    background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
-    background-color:#dfdfdf;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403) );
+    background:-moz-linear-gradient( center top, #77a809 5%, #89c403 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403');
+    background-color:#77a809;
 }
 #searchButton:active {
     position:relative;
