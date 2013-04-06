@@ -24,6 +24,14 @@ WordFinder = (function () {
     	_lang = { 'text': jQuery('#language_select option:selected').text(), 
     		val: $languageSelector.val()};
 
+        //prevent enter from submitting form
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+              event.preventDefault();
+              return false;
+            }
+        });
+
 		//clear out any text that may have been cached by browser
 	  	_$textInput.val('');
 
