@@ -8,6 +8,7 @@ The goal is to minimize the time between receiving the letters and displaying th
 Assumptions & considerations
 ----------------------------
 1. The dictionary file contains some duplicate entries with different cases.  For example: 'Z' and 'z' are listed.  This app treats them as separate entries for completeness.
+2. The letter order in the search string is not important.  All possible combinations of letters will be searched.
 2. For this exercise, clarity of variable names was emphasized over brevity.  In a production situation, the files would minified anyway.
 
 Algorithm Explanation
