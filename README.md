@@ -90,3 +90,4 @@ Features for future versions
 1. Improve support on mobile devices
 2. Auto-detect language of user's machine before loading first dictionary.
 3. Take advantage of Local Storage on modern browsers to store dictionaries.
+4. Improve speed to the point where search happens as the string is typed
