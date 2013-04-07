@@ -184,10 +184,6 @@ WordFinder = (function() {
             if (data !== undefined) {
                 console.log('Dictionary retrieved!');
                 _dictMap = addWordLetterCounts(data);
-                if (_$textInput.val().length > 0) {
-                    findWordsInString(_compareString, _dictMap);
-                    displayWords(_outputArray);
-                }
                 doneLoading();
             } else {
                 console.log('error finding words');
