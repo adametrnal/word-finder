@@ -7,7 +7,7 @@ h1 {
 header {
 	background:  url("../img/noisy_net.jpg") repeat;
 	padding: 10px 0;
-	color: white;
+	color: #fff;
 	border-bottom: 1px solid rgba(254, 254, 254, .2);
     width:100%;
 }
@@ -16,7 +16,7 @@ body {
 	background:  url("../img/grey_wash_wall.png") repeat;
 	margin: 0;
 	font-family: 'Sanchez', serif;
-    color: 222;
+    color: #222;
     font-size: 1em;
 }
 
@@ -53,9 +53,13 @@ label[for=output] {
 textarea {
 	padding: 5px 5px;
 	display:block;
-	height:300px;
-	box-sizing:border-box;
-	clear: both;
+	height:200px;
+	
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+	
+    clear: both;
 	font-family: 'Sanchez', serif;
 }
 
@@ -66,6 +70,46 @@ textarea {
 
 progress {
     width: 100%;
+}
+
+.wrapper {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.shadowContainer {
+    -webkit-box-shadow: 3px 3px 8px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    3px 3px 8px rgba(50, 50, 50, 0.75);
+    box-shadow:         3px 3px 8px rgba(50, 50, 50, 0.75);
+}
+
+.appDescription {
+    background:  url("../img/noisy_net.jpg") repeat;
+    padding: 10px;
+    margin-top: 10px;
+    color: white;
+
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    
+}
+
+.mainApp {
+    background:  url("../img/az_subtle.png") repeat;
+    padding: 10px;
+    overflow-y: auto;
+    overflow-x: hidden; 
+
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .dictStatus {
@@ -151,10 +195,7 @@ progress {
 	filter:alpha(opacity=1);
 }
 
-.wrapper {
-	width: 960px;
-	margin: 0 auto;
-}
+
 
 .hidden {
     display: none !important;
