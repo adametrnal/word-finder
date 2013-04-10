@@ -176,18 +176,31 @@ progress {
 }
 
 .langLayer {
-	padding: 20px 0 0 0;
+	padding: 20px 0;
 	display: block;
+    border-bottom: 1px solid rgba(40, 40, 40, .1);
 }
 
 .stringLayer {
 	padding: 15px 0;
 	display: block;
+    border-bottom: 1px solid rgba(40, 40, 40, .1);
+}
+
+.filterLayer {
+    padding-top: 10px;
+    border-bottom: 1px solid rgba(40, 40, 40, .1);
+
+}
+
+.outputLayer {
+    padding-top: 10px;
 }
 
 .sortLink {
 	float:right;
 }
+
 
 /* helpers */
 .disabled {
